@@ -1,30 +1,45 @@
 <template>
-    <table class="table  mytable" >
-  <tbody>
-    <tr>
-        <td class="table_head">Cage Code<i class="bi bi-caret-up-fill"></i> <i class="bi bi-caret-down-fill"></i></td>
-        <td class="table_head">Company</td>
-        <td class="table_head">Description</td>
-    </tr>
-
-    <tr v-for="company in companies" :key="company.code">
-      <td class="code">{{ company.code }}</td>
-      <td>{{ company.name }}</td>
-      <td>{{ company.discription }}</td>
-    </tr>
-  </tbody>
-</table>
-
+  <div id="app">
+    <b-table
+      class="table"
+      :items="items"
+      :fields="tableFields"
+      :label-sort-asc="tableLabelSortAsc"
+    >
+      <template #cell(view)="data">
+        <a target="_blank" rel="noopener" class="no-link" :href="data.item.url">
+          <b-icon icon="eye-fill" />
+        </a>
+      </template>
+      <template #cell(edit)="data" class="code_section heading">
+        <p @click.prevent="editTable(data)" class="para">{{data.item.code}}</p>
+      </template>
+    </b-table>
+    <edit-info-modal :data="data" :showModal="showModal" />
+  </div>
 </template>
 
 <script>
-import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import { BIcon, BTable } from "bootstrap-vue";
+import EditInfoModal from "./EditInfoModal.vue";
 export default {
-    name:'Table',
-    data(){
-        return {
-            companies:[
-                {
+  name: "Table",
+  components: {
+    "b-table": BTable,
+    "b-icon": BIcon,
+    "edit-info-modal": EditInfoModal,
+  },
+  data() {
+    return {
+      tableBordered: true,
+      tableLabelSortAsc: "",
+      tableFields: [
+        { sortable: true,  key: "edit", label: "cage code",thClass: 'bg-white heading'},
+        { sortable: true,  key: "name", label: "Company Name" },
+        { sortable: true,  key: "discription", label: "Discription" },
+      ],
+      items: [
+           {
                     code:12335,
                     name:'Tech Mahindra',
                     discription:'Service based company',
@@ -38,7 +53,7 @@ export default {
                     Region:'-',
                     vendor:'-'
                 },
-                 {
+                {
                     code:12336,
                     name:'Capgemini',
                     discription:'Service based company',
@@ -152,7 +167,7 @@ export default {
                     Region:'-',
                     vendor:'-'
                 },
-                                 {
+                {
                     code:12344,
                     name:'Larsen and Tourbo',
                     discription:'Service based company',
@@ -166,25 +181,34 @@ export default {
                     Region:'-',
                     vendor:'-'
                 },
-            ]
-        }
-    }
-}
+
+
+      ],
+      data: "",
+      showModal: false,
+    };
+  },
+  methods: {
+    editTable(data) {
+     console.log("data",data.item.code);
+      this.data = Object.assign({}, data.item.code);
+      this.showModal = true;
+    },
+  },
+};
 </script>
 
-<style>
-.mytable{
+<style scoped>
+.table{
     width:96%;
     height:300px;
-    margin:20px auto;
+    margin:40px auto;
 }
-
-.table_head{
-    font-size:12px;
-    color:#9ca4ab;
-}
-.code{
+.para{
+    cursor: pointer;
     color:#2a9fd8;
-    cursor:pointer;
+}
+.code_section{
+    width:33%;
 }
 </style>
