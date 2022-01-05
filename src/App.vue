@@ -1,20 +1,16 @@
 <template>
   <div id="app">
-    <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <Header  name="Mona"/>
     <Table  />
   </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
 import Header from './components/Header.vue'
 import Table from  './components/Table.vue'
 export default {
   name: 'App',
   components: {
-    // HelloWorld
     Header,
     Table,
   },
@@ -22,12 +18,25 @@ export default {
 </script>
 
 <style>
-/* #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+body{
+ font-family: "Inv Maison Neue", "Maison Neue", -apple-system, BlinkMacSystemFont,'Open Sans',open-sans, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: cyan;
-  margin-top: 60px;
-} */
+}
+#app {
+  color:#9ca4ab;
+}
+table tr th{
+  font-size: 12px;
+  color: #9ca4ab;
+  font-weight:500;
+}
+table tr td p {
+  margin: 1px;
+}
+.table.b-table > thead > tr > [aria-sort]:not(.b-table-sort-icon-left), .table.b-table > tfoot > tr > [aria-sort]:not(.b-table-sort-icon-left) {
+    background-position: right calc(0.75rem / 2) center;
+    padding-right: calc(0.75rem + 0.65em);
+    width: 33.33%;
+}
 </style>

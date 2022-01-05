@@ -22,8 +22,11 @@
 
                 <div class="button2">
                     <button class="btn btn-outline-primary me-md-2 mt-4 download" type="button">Download All</button>
-                    <button class="btn btn-primary mt-4 px-4 download2" type="button">Add New Cage Code</button>
+                    <button class="btn btn-primary mt-4 px-4 download2" type="button" v-b-modal.modal-center>Add New Cage Code</button>
                 </div>
+                <b-modal id="modal-center"  title="Add Cage Code">
+                      <p class="my-4">Content goes here...</p>
+                 </b-modal>
             </div>
         </nav>
     </div>
@@ -245,12 +248,12 @@ span{
     align-items: center;
     width: 72%;
     height: 65px;
-    padding-left: 190px;
+    padding-left: 167px;
 }
 .download{
     width:122px;
 }
 .download2{
-    width:198px;
+  width: 201px;
 }
 </style>
